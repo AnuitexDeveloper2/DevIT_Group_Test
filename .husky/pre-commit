@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+cd web
+# Run Eslint. Max warnings set to 0, means all warnings must be resolved before commit
+
+npm run lint
+echo "-----sustainable-minds-project-builder/Web eslint PASSED-----"

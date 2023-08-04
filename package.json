@@ -1,0 +1,14 @@
+{
+  "name": "dh-root",
+  "version": "0.0.1",
+  "engines": {
+    "node": "14.18.1"
+  },
+  "private": true,
+  "dependencies": {
+    "husky": "^8.0.0"
+  },
+  "scripts": {
+    "prepare": "husky install"
+  }
+}
