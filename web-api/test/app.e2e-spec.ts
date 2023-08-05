@@ -4,7 +4,6 @@ import * as pactum from 'pactum';
 import { Test } from '@nestjs/testing';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { AppModule } from '../src/app.module';
-// import { AuthDto } from '../src/auth/dto';
 describe('Auth module', () => {
   let app: INestApplication;
   let prisma: PrismaService;
