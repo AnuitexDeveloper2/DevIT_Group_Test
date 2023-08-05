@@ -1,8 +1,17 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
+# Validate web module
 cd web
 # Run Eslint. Max warnings set to 0, means all warnings must be resolved before commit
 
 npm run lint
-echo "-----sustainable-minds-project-builder/Web eslint PASSED-----"
+echo "-----DevIT_Group_Test/web eslint PASSED-----"
+
+
+# Validate web-api module
+cd ../web-api
+
+npm run lint
+echo "-----DevIT_Group_Test/web-api eslint PASSED-----"
+
