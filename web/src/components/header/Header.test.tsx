@@ -1,9 +1,10 @@
 import { mount } from 'enzyme';
 import { Dropdown } from 'antd';
 import Header from './Header';
+import { wrapWithProvider } from '../../utils/enzyme';
 
 describe('<Header/>', () => {
-    const component = mount(<Header />);
+    const component = mount(wrapWithProvider(<Header />));
 
     it('should render without error', () => {
         expect(component.html()).toBeTruthy();

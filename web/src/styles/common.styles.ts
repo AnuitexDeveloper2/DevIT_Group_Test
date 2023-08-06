@@ -1,6 +1,6 @@
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 import styled from 'styled-components';
-import { blue, blue01, blue02, blueDark01, blueDark02, blueDark03, white } from './colors';
+import { blue, blue01, blue02, blueDark01, blueDark02, blueDark03, main, white } from './colors';
 
 export const PrimaryButton = styled(Button)`
     cursor: pointer;
@@ -58,5 +58,11 @@ export const SecondaryButton = styled(Button)`
     }
     &:active {
         background-color: ${blueDark01};
+    }
+`;
+
+export const Spinner = styled(Spin)`
+    .ant-spin-dot-item {
+        background-color: ${main} !important;
     }
 `;

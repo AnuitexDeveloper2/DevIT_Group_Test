@@ -1,4 +1,5 @@
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
+import { alertService } from '../services';
 
 export interface HttpRequest<Req> {
     path: string;
@@ -9,15 +10,23 @@ export interface HttpRequest<Req> {
 
 export const http = async <AxiosResponse, Req>(
     config: HttpRequest<Req>,
-): Promise<AxiosResponse> => {
+): Promise<AxiosResponse | undefined> => {
     const headerRequest = {
         'Content-Type': 'application/json',
     };
     if (config.accessToken) {
         headerRequest['Authorization'] = `Bearer ${config.accessToken}`;
     }
-    return await axios(config.path, {
-        data: config.body,
-        method: config.method,
-    });
+    try {
+        const result = await axios(`${process.env.REACT_APP_URL}${config.path}`, {
+            data: config.body,
+            method: config.method,
+        });
+        return result.data;
+    } catch (error) {
+        if (error instanceof AxiosError) {
+            alertService.error(error.response?.data?.message[0]);
+        }
+        return undefined;
+    }
 };

@@ -1,6 +1,8 @@
+import { Rule } from 'antd/es/form';
+
 export interface CustomInputProps {
     Component: any;
-    rules?: any;
+    rules?: Rule[];
     props?: any;
     block?: boolean;
     label: string;

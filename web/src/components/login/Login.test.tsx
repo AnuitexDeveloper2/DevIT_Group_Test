@@ -1,4 +1,5 @@
 import { mount } from 'enzyme';
+import { wrapWithProvider } from '../../utils/enzyme';
 import LoginModal from './Login';
 import { LoginModalProps } from './Login.types';
 
@@ -8,7 +9,8 @@ describe('<LoginModal />', () => {
         handleCancel: jest.fn(),
     };
 
-    const mountComponent = (props = defaultProps) => mount(<LoginModal {...props} />);
+    const mountComponent = (props = defaultProps) =>
+        mount(wrapWithProvider(<LoginModal {...props} />));
 
     const component = mountComponent();
     afterAll(() => {

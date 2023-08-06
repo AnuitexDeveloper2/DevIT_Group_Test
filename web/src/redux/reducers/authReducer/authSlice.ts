@@ -19,8 +19,15 @@ export const authSlice = createSlice({
     initialState: initialState,
     reducers: {},
     extraReducers: (builder) => {
+        builder.addCase(signInAction.pending, (state) => {
+            state.pending = true;
+        });
+        builder.addCase(signInAction.rejected, (state) => {
+            state.pending = false;
+        });
         builder.addCase(signInAction.fulfilled, (state, action) => {
             state.user = action.payload;
+            state.pending = false;
         });
     },
 });
