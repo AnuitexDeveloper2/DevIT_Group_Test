@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { main } from '../../styles/colors';
+import { grayDark03, main } from '../../styles/colors';
 
 export const HeaderWrapper = styled('header')`
     box-sizing: border-box;
@@ -36,3 +36,13 @@ export const HeaderUserIcon = styled('img')`
     color: white;
     cursor: pointer;
 `;
+
+export const HeaderActionSection = styled('div')`
+    display: flex;
+    align-items: center;
+    font-family: 'DINNextLTPro';
+    font-size: 14px;
+    color: ${grayDark03};
+`;
+
+export const GrretSection = styled('div')``;

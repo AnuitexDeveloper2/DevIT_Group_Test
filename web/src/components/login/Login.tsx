@@ -1,8 +1,10 @@
+import { PayloadAction } from '@reduxjs/toolkit';
 import { Form, Input, Spin } from 'antd';
 import React from 'react';
 import { signInAction } from '../../redux/actions/authActions';
-import { SignInRequest } from '../../redux/actions/authActions/types';
+import { SignInRequest, SignInResponse } from '../../redux/actions/authActions/types';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
+import { alertService } from '../../services';
 import { Spinner } from '../../styles/common.styles';
 import CustomInput from '../shared/customInput/CustomInput';
 import ModalFooter from '../shared/modalFooter/ModalFooter';
@@ -16,7 +18,10 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, handleCancel }) => {
     const [form] = Form.useForm();
 
     const onSubmit = async (data: SignInRequest) => {
-        dispatch(signInAction(data));
+        const { payload } = (await dispatch(signInAction(data))) as PayloadAction<SignInResponse>;
+        if (payload) {
+            handleCancel();
+        }
     };
 
     return (

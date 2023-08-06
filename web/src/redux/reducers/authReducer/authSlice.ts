@@ -17,7 +17,12 @@ const initialState: AuthReducerType = {
 export const authSlice = createSlice({
     name: 'auth',
     initialState: initialState,
-    reducers: {},
+    reducers: {
+        logOutAction(state) {
+            state.user = null;
+            state.token = '';
+        },
+    },
     extraReducers: (builder) => {
         builder.addCase(signInAction.pending, (state) => {
             state.pending = true;
@@ -26,12 +31,15 @@ export const authSlice = createSlice({
             state.pending = false;
         });
         builder.addCase(signInAction.fulfilled, (state, action) => {
-            state.user = action.payload;
+            if (action.payload) {
+                state.user = action.payload.user;
+                state.token = action.payload.token;
+            }
             state.pending = false;
         });
     },
 });
 
-export const {} = authSlice.actions;
+export const { logOutAction } = authSlice.actions;
 
 export default authSlice.reducer;
