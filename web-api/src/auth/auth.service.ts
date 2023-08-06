@@ -39,6 +39,7 @@ export class AuthService {
           email: dto.email,
           firstName: dto.firstName,
           lastName: dto.lastName,
+          role: dto.role,
           hash: hash,
         },
         select: {

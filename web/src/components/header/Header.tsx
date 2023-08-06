@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Dropdown } from 'antd';
 import {
     GrretSection,
@@ -19,6 +20,7 @@ import { logOutAction } from '../../redux/reducers/authReducer/authSlice';
 const Header: React.FC = () => {
     const authSelector = useAppSelector((state) => state.authReducer);
     const dispatch = useAppDispatch();
+    const navigate = useNavigate();
     const loginModal = useModalState();
 
     const handleDropdownItemClick = async (data: { key: string }) => {
@@ -28,6 +30,9 @@ const Header: React.FC = () => {
                 break;
             case HeaderDropdownKeys.LOGOUT.toString():
                 dispatch(logOutAction());
+                break;
+            case HeaderDropdownKeys.CONTENT.toString():
+                navigate('/content');
                 break;
             default:
                 break;

@@ -5,7 +5,10 @@ import { HeaderDropdownKeys } from './Header.types';
 export const getHeaderItems = (user: User | null) => {
     switch (user?.role) {
         case Role.ADMIN:
-            return [{ key: HeaderDropdownKeys.LOGOUT, label: 'Log out' }];
+            return [
+                { key: HeaderDropdownKeys.LOGOUT, label: 'Log out' },
+                { key: HeaderDropdownKeys.CONTENT, label: 'Content' },
+            ];
         case Role.USER:
             return [{ key: HeaderDropdownKeys.LOGOUT, label: 'Log out' }];
         default:
