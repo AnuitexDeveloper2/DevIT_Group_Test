@@ -2,8 +2,11 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { loadState, saveState } from '../helper/localStorage';
 import { TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import authReducer from './reducers/authReducer/authSlice';
 
-const rootReducer = combineReducers({});
+const rootReducer = combineReducers({
+    authReducer,
+});
 
 export const setupStore = () => {
     const persistedState = loadState();
