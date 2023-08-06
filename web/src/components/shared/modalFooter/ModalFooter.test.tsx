@@ -1,7 +1,6 @@
-import { Button } from 'antd';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
-import { PrimaryButton, SecondaryButton } from '../../../styles/common.styles';
+import { PrimaryButton } from '../../../styles/common.styles';
 import ModalFooter from './ModalFooter';
 import { ModalFooterProps } from './ModalFooter.types';
 
