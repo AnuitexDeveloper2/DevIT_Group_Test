@@ -16,3 +16,5 @@ export const grayLight03 = '#EDEDED';
 export const white = '#ffffff';
 export const error = '#990000';
 export const teal = '#eff9fc';
+export const teal1 = '#eee';
+export const teal2 = '#000d1f';

@@ -13,7 +13,6 @@ import CreateArticle from './createArticle/CreateArticle';
 
 const ContentPage: React.FC = () => {
     const createContentModal = useModalState();
-    const token = useAppSelector((state) => state.authReducer.token);
     const dispatch = useAppDispatch();
     const [state, setState] = useState<ContentState>({
         data: Array<Article>(),
@@ -28,7 +27,7 @@ const ContentPage: React.FC = () => {
 
     const getData = async (page: number, perPage: number) => {
         const { payload } = (await dispatch(
-            getArticlesAction({ page, perPage, token }),
+            getArticlesAction({ page, perPage }),
         )) as PayloadAction<GetArticlesResponse>;
         if (payload) {
             setState({

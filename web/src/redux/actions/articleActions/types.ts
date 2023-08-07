@@ -19,9 +19,16 @@ export interface GetArticlesResponse {
 export interface GetArticlesAction {
     page: number;
     perPage: number;
-    token: string;
 }
 
 export interface EditArticle extends ArticleRequest {
     id: number;
+}
+
+export interface GetPublicArticlesAction {
+    page: number;
+    perPage: number;
+    searchString: string;
+    sortField: string;
+    sortDirection: string;
 }

@@ -1,6 +1,12 @@
 import { Input, Select, Space } from 'antd';
 import styled from 'styled-components';
-import { blueDark01, blueDark03, grayDark03, grayLight02 } from '../../../styles/colors';
+import {
+    blueDark01,
+    blueDark03,
+    grayDark03,
+    grayDark05,
+    grayLight02,
+} from '../../../styles/colors';
 const { Option } = Select;
 
 export const Container = styled(Space)`
@@ -30,7 +36,7 @@ export const CurrentNumberOfPage = styled('div')`
 `;
 
 export const PageArrowContainer = styled('div')`
-    color: ${grayLight02};
+    color: ${grayDark05};
     :hover {
         cursor: pointer;
         color: ${blueDark03};

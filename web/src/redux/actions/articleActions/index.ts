@@ -6,6 +6,7 @@ import {
     CreateArticleResponse,
     EditArticle,
     GetArticlesAction,
+    GetPublicArticlesAction,
 } from './types';
 
 const baseUrl = `/article`;
@@ -60,3 +61,15 @@ export const deleteArticleAction = createAsyncThunk<EditArticle | undefined, num
         return result;
     },
 );
+
+export const getPublicArticlesAction = createAsyncThunk<
+    EditArticle | undefined,
+    GetPublicArticlesAction
+>('article/delete', async (data: GetPublicArticlesAction) => {
+    const result = await http<EditArticle, GetPublicArticlesAction>({
+        path: `/article-public`,
+        method: 'post',
+        body: data,
+    });
+    return result;
+});

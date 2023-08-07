@@ -15,7 +15,7 @@ export const HeaderWrapper = styled('header')`
     height: 60px;
 `;
 
-export const HeaderTitle = styled('div')`
+export const HeaderTitle = styled('h1')`
     font-size: 24px;
     font-weight: bold;
     color: ${main};
