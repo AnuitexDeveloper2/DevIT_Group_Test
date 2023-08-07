@@ -8,4 +8,5 @@ export const ContentPageWrapper = styled('div')`
 export const CreateNewArticleSection = styled('div')`
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
 `;

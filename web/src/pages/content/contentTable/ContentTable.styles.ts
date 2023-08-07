@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Table } from 'antd';
-import { blueDark02 } from '../../../styles/colors';
+import { blueDark02, grayDark05, grayLight03, teal } from '../../../styles/colors';
 
 export const CustomContentTable = styled(Table)`
     [aria-label] {
@@ -43,17 +43,46 @@ export const CustomContentTable = styled(Table)`
         justify-content: normal;
     }
 
-    @supports (-moz-appearance: button) and (contain: paint) {
-        [aria-label] {
-            .ant-table-column-sorter-down {
-                top: 3px;
+    table {
+        tbody {
+            tr:nth-child(odd) {
+                background-color: ${grayLight03} !important;
+            }
+            .ant-table-row:hover {
+                background-color: ${teal} !important;
+            }
+            .ant-table-cell-row-hover {
+                background-color: ${teal} !important;
             }
         }
-        .ant-table-column-sorter-down.active {
-            top: 3px;
-        }
-        .ant-table-column-sorter-up.active {
-            top: -3px;
-        }
     }
+    .ant-pagination {
+        display: none;
+    }
+`;
+
+export const PagiNationContainer = styled('div')`
+    display: flex;
+    justify-content: flex-end;
+    margin: 20px;
+`;
+
+export const DotsAction = styled('div')`
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: ${grayDark05};
+    box-shadow:
+        0px 8px 0px ${grayDark05},
+        0px 16px 0px ${grayDark05};
+    position: absolute;
+    top: 13px;
+`;
+
+export const OpenMenuButton = styled('button')`
+    border: none;
+    position: relative;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 20px;
 `;

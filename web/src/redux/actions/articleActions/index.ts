@@ -1,7 +1,12 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { http } from '../../../helper/request';
 import { Article } from '../../../models/article/types';
-import { CreateArticleRequest, CreateArticleResponse, EditArticle } from './types';
+import {
+    CreateArticleRequest,
+    CreateArticleResponse,
+    EditArticle,
+    GetArticlesAction,
+} from './types';
 
 const baseUrl = `/article`;
 
@@ -13,19 +18,19 @@ export const createArticleAction = createAsyncThunk<
         path: `${baseUrl} `,
         method: 'post',
         body: data,
-        accessToken: data.token,
+        accessToken: true,
     });
     return result;
 });
 
-export const getArticlesAction = createAsyncThunk<Array<Article> | undefined, any>(
+export const getArticlesAction = createAsyncThunk<Array<Article> | undefined, GetArticlesAction>(
     'article/get',
-    async (data: any) => {
-        const result = (await http)<Array<Article>, any>({
-            path: `${baseUrl}`,
+    async (data: GetArticlesAction) => {
+        const result = (await http)<Array<Article>, GetArticlesAction>({
+            path: `${baseUrl}/get`,
             method: 'post',
             body: data,
-            accessToken: data.token,
+            accessToken: true,
         });
         return result;
     },

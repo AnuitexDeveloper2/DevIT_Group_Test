@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { setToken } from '../../../helper/localStorage';
 import { User } from '../../../models/user/types';
 import { signInAction } from '../../actions/authActions';
 
@@ -34,6 +35,7 @@ export const authSlice = createSlice({
             if (action.payload) {
                 state.user = action.payload.user;
                 state.token = action.payload.token;
+                setToken(action.payload.token);
             }
             state.pending = false;
         });

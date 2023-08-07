@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Dropdown } from 'antd';
 import {
@@ -16,12 +16,20 @@ import LoginModal from '../login/Login';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { getHeaderItems } from './Header.helper';
 import { logOutAction } from '../../redux/reducers/authReducer/authSlice';
+import { getToken } from '../../helper/localStorage';
 
 const Header: React.FC = () => {
     const authSelector = useAppSelector((state) => state.authReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const loginModal = useModalState();
+
+    useEffect(() => {
+        const token = getToken();
+        if (!token) {
+            dispatch(logOutAction());
+        }
+    });
 
     const handleDropdownItemClick = async (data: { key: string }) => {
         switch (data.key) {
