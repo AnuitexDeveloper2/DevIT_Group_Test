@@ -6,6 +6,11 @@ export interface ContentTableProps {
     page: number;
     total: number;
     perPage: number;
+    getData: (page: number, perPage: number) => void;
+}
+
+export interface ContentTableState {
+    selectedArticle: Article | null;
 }
 
 export interface ArticleTableActionsProps {

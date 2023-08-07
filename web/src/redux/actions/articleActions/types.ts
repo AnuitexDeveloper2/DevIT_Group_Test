@@ -5,9 +5,7 @@ export interface ArticleRequest {
     description: string;
 }
 
-export interface CreateArticleRequest extends ArticleRequest {
-    token: string;
-}
+export interface CreateArticleRequest extends ArticleRequest {}
 
 export interface CreateArticleResponse extends ArticleRequest {
     id: number;

@@ -40,9 +40,10 @@ export const editArticleAction = createAsyncThunk<EditArticle | undefined, EditA
     'article/edit',
     async (data: EditArticle) => {
         const result = await http<EditArticle, EditArticle>({
-            path: `${baseUrl} `,
+            path: `${baseUrl}/${data.id}`,
             method: 'put',
             body: data,
+            accessToken: true,
         });
         return result;
     },
@@ -54,6 +55,7 @@ export const deleteArticleAction = createAsyncThunk<EditArticle | undefined, num
         const result = await http<EditArticle, undefined>({
             path: `${baseUrl}/${id}`,
             method: 'delete',
+            accessToken: true,
         });
         return result;
     },

@@ -7,7 +7,7 @@ import { GetArticlesResponse } from '../../redux/actions/articleActions/types';
 import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { PrimaryButton } from '../../styles/common.styles';
 import { ContentPageWrapper, CreateNewArticleSection } from './Content.styles';
-import { ContentTableState } from './Content.types';
+import { ContentState } from './Content.types';
 import ContentTable from './contentTable/ContentTable';
 import CreateArticle from './createArticle/CreateArticle';
 
@@ -15,7 +15,7 @@ const ContentPage: React.FC = () => {
     const createContentModal = useModalState();
     const token = useAppSelector((state) => state.authReducer.token);
     const dispatch = useAppDispatch();
-    const [state, setState] = useState<ContentTableState>({
+    const [state, setState] = useState<ContentState>({
         data: Array<Article>(),
         page: 1,
         perPage: 10,
@@ -40,6 +40,11 @@ const ContentPage: React.FC = () => {
             });
         }
     };
+
+    const updateData = () => {
+        getData(state.page, state.perPage);
+        createContentModal.onClose();
+    };
     return (
         <ContentPageWrapper>
             <CreateNewArticleSection>
@@ -55,11 +60,13 @@ const ContentPage: React.FC = () => {
                 page={state.page}
                 perPage={state.perPage}
                 total={state.total}
+                getData={getData}
             />
             {createContentModal.isOpen && (
                 <CreateArticle
                     isOpen={createContentModal.isOpen}
                     handleCancel={createContentModal.onClose}
+                    refresh={updateData}
                 />
             )}
         </ContentPageWrapper>

@@ -6,28 +6,48 @@ import React, { useEffect } from 'react';
 import CustomInput from '../../../components/shared/customInput/CustomInput';
 import ModalFooter from '../../../components/shared/modalFooter/ModalFooter';
 import ModalTitle from '../../../components/shared/modalTitle/ModalTitle';
-import { createArticleAction } from '../../../redux/actions/articleActions';
+import { createArticleAction, editArticleAction } from '../../../redux/actions/articleActions';
 import {
     CreateArticleRequest,
     CreateArticleResponse,
+    EditArticle,
 } from '../../../redux/actions/articleActions/types';
 import { useAppDispatch, useAppSelector } from '../../../redux/store';
 import { Spinner } from '../../../styles/common.styles';
 import { CreateArticleModal } from './CreateArticle.styles';
 import { CreateArticleProps } from './CreateArticle.types';
 
-const CreateArticle: React.FC<CreateArticleProps> = ({ isOpen, handleCancel, article }) => {
+const CreateArticle: React.FC<CreateArticleProps> = ({
+    isOpen,
+    article,
+    handleCancel,
+    refresh,
+}) => {
     const articleReducer = useAppSelector((state) => state.articleReducer);
-    const authReducer = useAppSelector((state) => state.authReducer.token);
     const dispatch = useAppDispatch();
     const [form] = useForm();
 
+    useEffect(() => {
+        if (article) {
+            form.setFieldsValue(article);
+        }
+    }, []);
+
     const onSubmit = async (data: CreateArticleRequest) => {
-        const { payload } = (await dispatch(
-            createArticleAction({ ...data, token: authReducer }),
-        )) as PayloadAction<CreateArticleResponse>;
-        if (payload) {
-            handleCancel();
+        let result: any;
+        if (article && article.id) {
+            const { payload } = (await dispatch(
+                editArticleAction({ ...data, id: article.id }),
+            )) as PayloadAction<EditArticle>;
+            result = payload;
+        } else {
+            const { payload } = (await dispatch(
+                createArticleAction({ ...data }),
+            )) as PayloadAction<CreateArticleResponse>;
+            result = payload;
+        }
+        if (result) {
+            refresh();
         }
     };
     return (

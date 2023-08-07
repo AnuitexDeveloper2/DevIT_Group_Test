@@ -1,6 +1,6 @@
 import { Article } from '../../models/article/types';
 
-export interface ContentTableState {
+export interface ContentState {
     data: Array<Article>;
     page: number;
     perPage: number;

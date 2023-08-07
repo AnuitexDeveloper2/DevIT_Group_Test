@@ -30,6 +30,7 @@ export const http = async <AxiosResponse, Req>(
         if (error instanceof AxiosError) {
             if (error.response?.status === 401) {
                 localStorage.clear();
+                window.location.href = '/';
                 return;
             }
             if (typeof error.response?.data?.message === 'string') {
