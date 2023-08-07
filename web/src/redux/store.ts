@@ -3,9 +3,11 @@ import { loadState, saveState } from '../helper/localStorage';
 import { TypedUseSelectorHook, useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import authReducer from './reducers/authReducer/authSlice';
+import articleReducer from './reducers/articleReducer/articleSlice';
 
 const rootReducer = combineReducers({
     authReducer,
+    articleReducer,
 });
 
 export const setupStore = () => {

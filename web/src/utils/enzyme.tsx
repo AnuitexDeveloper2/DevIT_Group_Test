@@ -11,6 +11,10 @@ const initialState: RootState = {
         pending: false,
         token: '',
     },
+    articleReducer: {
+        selectedArticle: null,
+        pending: false,
+    },
 };
 
 const middlewares: any = [thunk];

@@ -44,7 +44,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, handleCancel }) => {
                         block
                     />
                     <CustomInput
-                        Component={Input}
+                        Component={Input.Password}
                         label="Password"
                         name="password"
                         rules={[{ required: true, message: '' }]}
