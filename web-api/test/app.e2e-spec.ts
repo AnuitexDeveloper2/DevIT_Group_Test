@@ -4,7 +4,11 @@ import * as pactum from 'pactum';
 import { Test } from '@nestjs/testing';
 import { PrismaService } from '../src/prisma/prisma.service';
 import { AppModule } from '../src/app.module';
-describe('Auth module', () => {
+import { CreateArticleDto } from 'src/article/dto';
+import { GetArticlesDto } from 'src/article/dto/get-articles.dto';
+import { AuthDto } from 'src/auth/dto';
+import { Role } from '@prisma/client';
+describe('App e2e', () => {
   let app: INestApplication;
   let prisma: PrismaService;
   beforeAll(async () => {
@@ -27,9 +31,14 @@ describe('Auth module', () => {
     app.close();
   });
   +describe('Auth', () => {
-    const dto = {
+    const dto: AuthDto = {
       email: 'test@gmail.com',
       password: '123',
+    };
+    const admindDto = {
+      email: 'admin@gmial.com',
+      password: '123',
+      role: Role.ADMIN,
     };
     describe('Signup', () => {
       it('should throw if email empty', () => {
@@ -57,7 +66,7 @@ describe('Auth module', () => {
         return pactum
           .spec()
           .post('/auth/signup')
-          .withBody(dto)
+          .withBody(admindDto)
           .expectStatus(201);
       });
     });
@@ -68,7 +77,8 @@ describe('Auth module', () => {
           .spec()
           .post('/auth/signin')
           .withBody({
-            password: dto.password,
+            password: admindDto.password,
+            email: admindDto.password,
           })
           .expectStatus(400);
       });
@@ -88,10 +98,45 @@ describe('Auth module', () => {
         return pactum
           .spec()
           .post('/auth/signin')
-          .withBody(dto)
+          .withBody(admindDto)
           .expectStatus(200)
-          .stores('userAt', 'accessToken')
+          .stores('userAt', 'token')
           .inspect();
+      });
+    });
+  });
+
+  describe('Article', () => {
+    describe('Create article', () => {
+      it('should get article', () => {
+        const getArticleDto: GetArticlesDto = {
+          page: 1,
+          perPage: 10,
+        };
+        return pactum
+          .spec()
+          .post('/article/get')
+          .withBody(getArticleDto)
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .expectStatus(200)
+          .expectBody({ data: [], total: 0 });
+      });
+    });
+    describe('Create article', () => {
+      it('should create article', () => {
+        const dto: CreateArticleDto = {
+          link: 'https://netflixtechblog.com/feed',
+        };
+        return pactum
+          .spec()
+          .post('/article')
+          .withHeaders({
+            Authorization: 'Bearer $S{userAt}',
+          })
+          .withBody(dto)
+          .expectStatus(201);
       });
     });
   });

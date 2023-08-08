@@ -1,4 +1,5 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { feedParser } from 'src/helper/parseLink';
 import { PrismaService } from '../prisma/prisma.service';
 import { CreateArticleDto, EditArticleDto } from './dto';
 import { GetArticlesDto } from './dto/get-articles.dto';
@@ -8,10 +9,13 @@ export class ArticleService {
   constructor(private prisma: PrismaService) {}
 
   async createArticle(userId: number, dto: CreateArticleDto) {
+    const parsedLink = await feedParser(dto.link);
     const article = await this.prisma.article.create({
       data: {
-        user: { connect: { id: userId } },
         ...dto,
+        user: { connect: { id: userId } },
+        description: parsedLink.description,
+        title: parsedLink.title,
       },
     });
 
@@ -69,4 +73,5 @@ export class ArticleService {
       },
     });
   }
+  private;
 }

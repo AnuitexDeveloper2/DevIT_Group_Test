@@ -2,6 +2,7 @@ import {
   Body,
   Controller,
   Delete,
+  HttpCode,
   Param,
   ParseIntPipe,
   Post,
@@ -9,9 +10,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { Role } from '@prisma/client';
-import { GetUser } from 'src/auth/decorator';
-import { Roles } from 'src/auth/decorator/roles.decorator';
-import { JwtGuard, RolesGuard } from 'src/auth/guard';
+import { GetUser } from '../auth/decorator';
+import { Roles } from '../auth/decorator/roles.decorator';
+import { JwtGuard, RolesGuard } from '../auth/guard';
 import { ArticleService } from './article.service';
 import { CreateArticleDto, EditArticleDto } from './dto';
 import { GetArticlesDto } from './dto/get-articles.dto';
@@ -27,6 +28,7 @@ export class ArticleController {
     return this.articleService.createArticle(userId, dto);
   }
 
+  @HttpCode(200)
   @Post('get')
   getArticles(@Body() dto: GetArticlesDto) {
     return this.articleService.getArticles(dto);
