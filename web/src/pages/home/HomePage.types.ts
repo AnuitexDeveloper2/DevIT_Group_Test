@@ -8,4 +8,5 @@ export interface HomePageState {
     sortDirection: string;
     total: number;
     data: Array<Article>;
+    pending: boolean;
 }

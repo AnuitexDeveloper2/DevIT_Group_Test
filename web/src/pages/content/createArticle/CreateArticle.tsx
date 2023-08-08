@@ -52,7 +52,7 @@ const CreateArticle: React.FC<CreateArticleProps> = ({
     };
     return (
         <CreateArticleModal open={isOpen} onCancel={handleCancel} footer={null} centered>
-            <Spinner spinning={articleReducer.pending}>
+            <Spinner spinning={false}>
                 <ModalTitle title={`${article ? 'Edit' : 'Create new'} Article`} />
                 <Form
                     name="login"
@@ -74,6 +74,20 @@ const CreateArticle: React.FC<CreateArticleProps> = ({
                         label="Description"
                         name="description"
                         rules={[{ required: true, message: '' }]}
+                        block
+                    />
+                    <CustomInput
+                        Component={Input}
+                        label="link"
+                        name="link"
+                        rules={[
+                            { required: true, message: '' },
+                            {
+                                pattern:
+                                    /^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?feed$/,
+                                message: 'Invalid link',
+                            },
+                        ]}
                         block
                     />
                     <ModalFooter submit={() => {}} action="Continue" cancel={handleCancel} />

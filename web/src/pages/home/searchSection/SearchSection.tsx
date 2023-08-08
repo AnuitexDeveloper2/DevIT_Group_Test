@@ -7,7 +7,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({ search }) => {
         search(event.target.value);
     };
 
-    return <SearchFindInput onChange={handleSearch} />;
+    return <SearchFindInput onChange={handleSearch} placeholder="Search by article title" />;
 };
 
 export default SearchSection;

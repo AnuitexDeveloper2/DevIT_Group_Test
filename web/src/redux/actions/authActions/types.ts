@@ -1,3 +1,4 @@
+import { Role } from '../../../models/user/enum';
 import { User } from '../../../models/user/types';
 
 export interface SignInRequest {
@@ -8,4 +9,16 @@ export interface SignInRequest {
 export interface SignInResponse {
     user: User;
     token: string;
+}
+
+export interface SignUpRequest {
+    email: string;
+    password: string;
+    role?: Role;
+}
+
+export interface SignUpResponse {
+    email: string;
+    password: string;
+    role?: Role;
 }

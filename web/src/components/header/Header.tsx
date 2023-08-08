@@ -17,12 +17,14 @@ import { useAppDispatch, useAppSelector } from '../../redux/store';
 import { getHeaderItems } from './Header.helper';
 import { logOutAction } from '../../redux/reducers/authReducer/authSlice';
 import { getToken } from '../../helper/localStorage';
+import SignUpModal from '../signUp/SignUpModal';
 
 const Header: React.FC = () => {
     const authSelector = useAppSelector((state) => state.authReducer);
     const dispatch = useAppDispatch();
     const navigate = useNavigate();
     const loginModal = useModalState();
+    const signUpModal = useModalState();
 
     useEffect(() => {
         const token = getToken();
@@ -38,6 +40,9 @@ const Header: React.FC = () => {
                 break;
             case HeaderDropdownKeys.LOGOUT.toString():
                 dispatch(logOutAction());
+                break;
+            case HeaderDropdownKeys.SIGNUP.toString():
+                signUpModal.onOpen();
                 break;
             case HeaderDropdownKeys.CONTENT.toString():
                 navigate('/content');
@@ -66,7 +71,10 @@ const Header: React.FC = () => {
                     <HeaderUserIcon src={User} alt="menu" width={40} />
                 </Dropdown>
             </HeaderActionSection>
-            <LoginModal isOpen={loginModal.isOpen} handleCancel={loginModal.onClose} />
+            {loginModal.isOpen && (
+                <LoginModal isOpen={loginModal.isOpen} handleCancel={loginModal.onClose} />
+            )}
+            {<SignUpModal isOpen={signUpModal.isOpen} handleCancel={signUpModal.onClose} />}
         </HeaderWrapper>
     );
 };

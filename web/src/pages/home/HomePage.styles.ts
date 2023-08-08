@@ -12,10 +12,17 @@ export const ArticlesSection = styled('section')`
     -ms-flex-pack: center;
     justify-content: center;
     gap: 1.5rem;
+    position: relative;
 `;
 
 export const HomePaginationContainer = styled('div')`
     display: flex;
     justify-content: flex-end;
     margin: 20px 10px;
+`;
+
+export const HomePageActionsContainer = styled('div')`
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 30px;
 `;

@@ -17,6 +17,10 @@ export const getHeaderItems = (user: User | null) => {
                     key: HeaderDropdownKeys.LOGIN,
                     label: 'Log in',
                 },
+                {
+                    key: HeaderDropdownKeys.SIGNUP,
+                    label: 'Sign up',
+                },
             ];
     }
 };
