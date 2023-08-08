@@ -4,7 +4,7 @@ import { ArticleItemProps } from './ArticleItem.types';
 
 const ArticleItem: React.FC<ArticleItemProps> = ({ item }) => {
     return (
-        <ArticleItemWrapper>
+        <ArticleItemWrapper href={item.link} target="_blank">
             <ArticleTitle>{item.title}</ArticleTitle>
             <ArticleDescription>{item.description}</ArticleDescription>
         </ArticleItemWrapper>

@@ -127,7 +127,9 @@ describe('App e2e', () => {
     describe('Create article', () => {
       it('should create article', () => {
         const dto: CreateArticleDto = {
-          link: 'https://netflixtechblog.com/feed',
+          title: 'test title',
+          description: 'description',
+          link: 'www',
         };
         return pactum
           .spec()

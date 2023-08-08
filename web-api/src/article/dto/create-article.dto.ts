@@ -1,7 +1,18 @@
-import { IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateArticleDto {
   @IsString()
   @IsNotEmpty()
+  title: string;
+
+  @IsString()
+  @IsNotEmpty()
+  description: string;
+
+  @IsString()
+  @IsNotEmpty()
   link: string;
+
+  @IsOptional()
+  feedId?: string;
 }
