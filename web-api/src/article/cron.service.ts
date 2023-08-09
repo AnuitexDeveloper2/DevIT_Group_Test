@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Cron } from '@nestjs/schedule';
-import { feedParser } from 'src/helper/parseLink';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { feedParser } from '../helper/parseLink';
+import { PrismaService } from '../prisma/prisma.service';
 import { ArticleService } from './article.service';
 import { CreateArticleDto } from './dto';
 
@@ -11,7 +11,7 @@ export class CronService {
     private articleService: ArticleService,
     private prismaService: PrismaService,
   ) {}
-  @Cron('* 1 * * * *')
+  @Cron('* 10 * * * *')
   async findArticles() {
     const admin = await this.prismaService.user.findFirstOrThrow({
       where: {

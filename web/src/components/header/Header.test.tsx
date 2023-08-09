@@ -22,10 +22,10 @@ describe('<Header/>', () => {
         expect(component.html()).toBeTruthy();
     });
 
-    it('should be only one option for unathorized user', () => {
+    it('should be two options for unathorized user', () => {
         const menuInstance = component.find(Dropdown);
         const menuOptions = menuInstance.props().menu?.items;
-        expect(menuOptions).toHaveLength(1);
+        expect(menuOptions).toHaveLength(2);
     });
 
     it('should be two options for user with admin role', () => {

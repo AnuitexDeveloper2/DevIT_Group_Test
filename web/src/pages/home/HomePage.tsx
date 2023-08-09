@@ -23,7 +23,7 @@ const HomePage: React.FC = () => {
 
     const [state, setState] = useState<HomePageState>({
         page: 1,
-        perPage: 10,
+        perPage: 12,
         searchString: '',
         sortField: '',
         sortDirection: '',
@@ -97,7 +97,7 @@ const HomePage: React.FC = () => {
                 <SortSection sort={sort} />
                 <SearchSection search={search} />
             </HomePageActionsContainer>
-            {!state.pending && state.data.length ? (
+            {!state.pending && state.data.length > 0 ? (
                 <div>
                     <ArticlesSection>
                         {state.data.map((item) => (
@@ -114,7 +114,10 @@ const HomePage: React.FC = () => {
                     </HomePaginationContainer>
                 </div>
             ) : (
-                <div>{!state.pending && <EmptyArticlesPage />}</div>
+                <div>
+                    {' '}
+                    <EmptyArticlesPage />
+                </div>
             )}
         </HomePageWrapper>
     );

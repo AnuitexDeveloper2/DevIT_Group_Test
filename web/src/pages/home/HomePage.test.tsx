@@ -14,10 +14,6 @@ describe('<HomePage />', () => {
         expect(component.html()).toBeTruthy();
     });
 
-    afterEach(() => {
-        component.unmount();
-    });
-
     it('should show <EmptyArticlesPage /> component with empty data', () => {
         const initialState = 'Initial State with false pending';
 

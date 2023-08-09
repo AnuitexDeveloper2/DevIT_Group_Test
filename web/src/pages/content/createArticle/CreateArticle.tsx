@@ -84,7 +84,7 @@ const CreateArticle: React.FC<CreateArticleProps> = ({
                             { required: true, message: '' },
                             {
                                 pattern:
-                                    /^(https?:\/\/)?([\da-z\.-]+\.[a-z\.]{2,6}|[\d\.]+)([\/:?=&#]{1}[\da-z\.-]+)*[\/\?]?feed$/,
+                                    /[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)?/,
                                 message: 'Invalid link',
                             },
                         ]}

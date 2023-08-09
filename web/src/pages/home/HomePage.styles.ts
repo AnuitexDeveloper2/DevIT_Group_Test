@@ -18,7 +18,8 @@ export const ArticlesSection = styled('section')`
 export const HomePaginationContainer = styled('div')`
     display: flex;
     justify-content: flex-end;
-    margin: 20px 10px;
+    margin: 30px 10px;
+    padding-bottom: 30px;
 `;
 
 export const HomePageActionsContainer = styled('div')`
